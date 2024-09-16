@@ -9,7 +9,6 @@
     "priview": "serve -s dist -l 4000",
     "serve": "webpack-dev-server -c webpack/webpack.dev.js --node-env devlopment"
   },
-
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/plugin-transform-runtime": "^7.24.7",
@@ -18,6 +17,7 @@
     "@types/lodash": "^4.17.7",
     "@types/node": "^20.14.8",
     "babel-loader": "^9.1.3",
+    "compression-webpack-plugin": "^11.1.0",
     "copy-webpack-plugin": "^12.0.2",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",

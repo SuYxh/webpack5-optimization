@@ -1,5 +1,6 @@
 const baseConfig = require("./webpack.base.js");
 const { merge } = require("webpack-merge");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 /**
  * @type {import('webpack').Configuration}
@@ -7,6 +8,15 @@ const { merge } = require("webpack-merge");
 
 const prodConfig = {
   mode: "production",
+  plugins: [
+    new CompressionPlugin({
+      filename: "[path][base].gz", // 生成的文件名格式
+      algorithm: "gzip", // 使用的压缩算法
+      test: /\.js$|\.css$|\.html$/, // 需要压缩的文件类型
+      threshold: 10240, // 只压缩大于 10KB 的文件
+      minRatio: 0.8, // 压缩比率，只有压缩比率大于 0.8 的文件才会被压缩
+    }),
+  ],
   optimization: {
     // 用文件的名字作为chunk的名字
     chunkIds: "named",
