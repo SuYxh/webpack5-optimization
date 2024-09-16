@@ -8,6 +8,10 @@ const { merge } = require('webpack-merge')
 
 const prodConfig = {
   mode: 'production',
+  optimization: {
+    // 用文件的名字作为chunk的名字
+    chunkIds: 'named',
+  },
 }
 
 module.exports = merge(baseConfig, prodConfig)

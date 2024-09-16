@@ -2,19 +2,17 @@
 // 生成vue-router的初始化配置代码
 
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/views/Home.vue';
-import About from '@/views/About.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import(/* webpackChunkName: "HomeView" */ '@/views/Home.vue')
   },
   {
     path: '/about',
     name: 'About',
-    component: About,
+    component: () => import(/* webpackChunkName: "AboutView" */'@/views/About.vue')
   },
 ];
 
