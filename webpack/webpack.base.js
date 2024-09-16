@@ -10,6 +10,7 @@ const setCssRules = require("./setCssRules");
 const setModuleCssRule = require("./setModuleCssRule");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BuildTimePlugin = require('../src/plugins/BuildTimePlugin.ts');
 
 // 读取 node_env 环境变量的值
 
@@ -119,7 +120,8 @@ module.exports = {
       generateStatsFile: false,
       statsOptions: null,
       logLevel: 'info'
-    })
+    }),
+    new BuildTimePlugin()
   ],
   module: {
     // 配置 leader
