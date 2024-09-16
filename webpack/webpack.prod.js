@@ -34,20 +34,24 @@ const prodConfig = {
         },
 
         customChunk: {
+          // 测试函数，确定是否将模块包括在此chunk策略中
           test(module) {
+            // 选择大于30KB且位于node_modules目录中的模块
             return (
               module.size() > 30000 &&
               module.nameForCondition() &&
               module.nameForCondition().includes("node_modules")
             );
           },
+          // 定义生成的chunk的名称
           name(module) {
+            // 从模块路径中提取包名
             const packageNameMatch = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/
             );
             let packageName = packageNameMatch ? packageNameMatch[1] : "";
 
-            // 处理作用域包名
+            //  如果是作用域包（如@vue/cli），特别处理以获取完整的包名
             if (packageName.startsWith("@")) {
               const scopePackageNameMatch = module.context.match(
                 /[\\/]node_modules[\\/]@([^\\/]+)[\\/]+([^\\/]+)([\\/]|$)/
@@ -57,10 +61,14 @@ const prodConfig = {
               }
             }
 
+            // 将包名中的斜线或@符号替换为下划线，确保名称有效
             return `chunk-lib.${packageName.replace(/[\/@]/g, "_")}`;
           },
+          // 此chunk的优先级
           priority: 20,
+          // 此chunk至少包含的模块数，此处设置为至少包含1个模块
           minChunks: 1,
+          // 如果模块已被包含在另一个现成的chunk中，复用已存在的chunk
           reuseExistingChunk: true,
         },
       },
