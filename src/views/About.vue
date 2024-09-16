@@ -1,0 +1,17 @@
+<template>
+    <div class="home-container">
+        About 页面
+    </div>
+</template>
+<script lang="ts" setup>
+
+import { map } from 'lodash-es'
+
+const numbers = [1, 2, 3, 4, 5]
+
+const doubledNumbers = map(numbers, (num: number) => num * 2)
+
+console.log('doubledNumbers', doubledNumbers); // 输出: [2, 4, 6, 8, 10]
+
+</script>
+
