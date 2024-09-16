@@ -6,7 +6,7 @@
 </template>
 <script lang="ts" setup>
 
-import { map } from 'lodash'
+import { map } from 'lodash-es'
 
 const numbers = [1, 2, 3, 4, 5]
 
